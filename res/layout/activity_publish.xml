@@ -1,0 +1,37 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Publish Target" />
+
+    <Spinner
+        android:id="@+id/subscribeNodeListSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Publish" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="XML to Publish" />
+
+    <TextView
+        android:id="@+id/xmlText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="XML Here"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+</LinearLayout>
