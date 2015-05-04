@@ -215,7 +215,7 @@ public class SoxLibrary {
 	public void connectXMPPServer() throws XMPPException
 	{
 
-		org.jivesoftware.smackx.ConfigureProviderManager.configureProviderManager();
+//		org.jivesoftware.smackx.ConfigureProviderManager.configureProviderManager();
 
 		init();
 
