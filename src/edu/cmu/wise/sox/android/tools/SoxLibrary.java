@@ -17,6 +17,7 @@ package edu.cmu.wise.sox.android.tools;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
 import org.jivesoftware.smack.ConnectionConfiguration;
 import org.jivesoftware.smack.Roster;
 import org.jivesoftware.smack.Roster.SubscriptionMode;
@@ -370,9 +371,21 @@ public class SoxLibrary {
 		return result;
 	}
 
-	public List<Subscription> getSubscribeNodeList(){
+	public List<Subscription> getSubscribeNodeList() throws InterruptedException{
 		try {
+			
 			List<Subscription> subList = mPubSubManager.getSubscriptions();
+			if (subList != null) {
+				System.out.println("We are subcribed to the sensors below:");
+				for (Subscription Node : subList) {
+					System.out.println(Node);
+				}
+			}
+			while (subList == null) {
+				System.out.println("Server is Slow, please be patient...");
+				Thread.sleep(5000);
+				subList = mPubSubManager.getSubscriptions();
+			}
 			return subList;
 		} catch (XMPPException e) {
 			// TODO Auto-generated catch block
