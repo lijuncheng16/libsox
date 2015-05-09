@@ -9,7 +9,7 @@
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="libs/smackx-3.2.2.jar"/>
-	<classpathentry kind="lib" path="libs/smack-3.2.2.jar"/>
+	<classpathentry kind="lib" path="libs/smackx-3.2.2.jar" sourcepath="libs/smackx-3.2.2-sources.jar"/>
+	<classpathentry kind="lib" path="libs/smack-3.2.2.jar" sourcepath="libs/smack-3.2.2-sources.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
