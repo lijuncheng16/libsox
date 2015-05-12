@@ -4,6 +4,8 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -66,18 +68,18 @@ public class testConn {
 		int port = 5222;
 		String userName = "billyli16";
 		String password = "skynet";
-		XMPPConnection mXMPPConnection;
+		//XMPPConnection mXMPPConnection;
 		
 		System.out.println("Testing Connection...");
-		ConnectionConfiguration config = new ConnectionConfiguration(xmppServer,port);
-		mXMPPConnection = new XMPPConnection(config);
-
-		try {
-			mXMPPConnection.connect();
-		} catch (XMPPException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		ConnectionConfiguration config = new ConnectionConfiguration(xmppServer,port);
+//		mXMPPConnection = new XMPPConnection(config);
+//
+//		try {
+//			mXMPPConnection.connect();
+//		} catch (XMPPException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 		SoxLibrary soxConn = new SoxLibrary(xmppServer, port, userName, password);
 		
@@ -89,7 +91,7 @@ public class testConn {
 		}
 		System.out.println("Connection established...");
 		
-		HashMap<String, String> hash = new HashMap<String, String>();
+		Map<String, String> hash = new HashMap<String, String>();
 		hash.put("244E7900519C38F8", "Elevator");
 		hash.put("244E7900519C3936", "Room 201");
 		hash.put("244E7900519C3968", "Room 214");
@@ -113,18 +115,32 @@ public class testConn {
 		hash.put("da0e7ed75cf65a800e1430149547da1a", "Wistat 214");
 		hash.put("f593910a7d513a05ef3718530ee04b90", "Wistat 205");
 		
+		for (Entry<String, String> entry : hash.entrySet()) {
+		    String k = entry.getKey();
+		    String v = entry.getValue();
+		    System.out.printf("%s %s\n", k, v);
+//		    soxConn.subscribeToNode(k);
+		}
+		//soxConn.unsubscribeToNode("244E7900519C38F8", "597500A6176AA");
 		@NotNull List<Subscription> NodeList = soxConn.getSubscribeNodeList();
+		while(true){
 		if (NodeList != null) {
 			for (Subscription Node : NodeList) {
-				System.out.println(hash.get(Node.getNode()));
+				//System.out.println(hash.get(Node.getNode()));
 				//System.out.println(soxConn.getNodeItemList(Node.getNode()));
-				while(true){
+				
 				String sensorData = soxConn.getTempItemXml(Node.getNode());
 				
 				//System.out.println("Original SensorData is:" + sensorData);
-				System.out.println("Temperature Reading: " + extractValue(sensorData));
+				//System.out.println("Temperature Reading: " + extractValue(sensorData));
+				System.out.flush();
 				}
 			}
+		try {
+		    Thread.sleep(10000);
+		} catch(InterruptedException ex) {
+		    Thread.currentThread().interrupt();
+		}
 		}
 	}
 

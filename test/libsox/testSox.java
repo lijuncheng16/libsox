@@ -50,23 +50,14 @@ public class testSox extends Applet{
 		int port = 5222;
 		String userName = "billyli16";
 		String password = "skynet";
-		XMPPConnection mXMPPConnection;
+		
 		
 		System.out.println("Testing Connection...");
-		ConnectionConfiguration config = new ConnectionConfiguration(xmppServer,port);
-		mXMPPConnection = new XMPPConnection(config);
 
-		try {
-			mXMPPConnection.connect();
-		} catch (XMPPException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		SoxLibrary soxConn = new SoxLibrary(xmppServer, port, userName, password);
 		try {
 			soxConn.connectXMPPServer();
 		} catch (XMPPException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.out.println("Connection established...");

@@ -429,6 +429,28 @@ public class SoxLibrary {
 		}
 	}
 
+	public String getItemXml(String nodeId) {
+		try {
+			LeafNode node = (LeafNode) mPubSubManager.getNode(nodeId);
+			// getItems() can return subclasses of Item, but we don't
+			// use that, so keep it simple.
+			List<Item> items = node.getItems(15);
+			int i;
+			for (i = 0; i < items.size(); i++) {
+				String ItemID = items.get(i).getId();
+				if (ItemID.equals("_Temperature")) {
+					break;
+				}
+			}
+			String temperature = items.get(i).toXML();
+			return temperature;
+		} catch (XMPPException e) {
+			throw new SoxLibException("problem accessing:" + nodeId + ":" + e.getLocalizedMessage());
+		} catch (IndexOutOfBoundsException e) {
+			throw new SoxLibException("nodeId item was empty:" + nodeId);
+		}
+	}
+	
 	public String getLastItemXml(String nodeId) {
 		try {
 			LeafNode node = (LeafNode) mPubSubManager.getNode(nodeId);
